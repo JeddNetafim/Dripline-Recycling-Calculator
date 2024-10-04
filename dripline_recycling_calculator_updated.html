@@ -8,92 +8,116 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 200px;
+            height: auto;
         }
         h2 {
             color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
         }
         .calculator {
-            background-color: #f4f4f4;
-            padding: 20px;
+            background-color: #ffffff;
+            padding: 30px;
             border-radius: 8px;
             max-width: 400px;
             margin: auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .calculator label, .calculator input {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .calculator label {
+            font-weight: bold;
+            color: #34495e;
         }
         .calculator input {
-            padding: 8px;
+            padding: 10px;
             width: 100%;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
         .calculator button {
-            padding: 10px;
+            padding: 12px 20px;
             background-color: #3498db;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
         .calculator button:hover {
             background-color: #2980b9;
         }
         .result {
             margin-top: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
             font-size: 1.2em;
             color: #2c3e50;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-
+<div class="logo-container">
+    <a href="https://www.netafimusa.com" target="_blank">
+        <img src="data:image/png;base64,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" alt="Netafim USA Logo">
+    </a>
+</div>
 <h2>Dripline Recycling Calculator</h2>
 <div class="calculator">
     <label for="rowSpacing">Row Spacing / Bed Spacing (in feet):</label>
-    <input type="number" id="rowSpacing" placeholder="Enter row spacing">
-
+    <input type="number" id="rowSpacing" placeholder="Enter row spacing" step="any">
+    
     <label for="numDriplines">Number of Driplines per Row:</label>
-    <input type="number" id="numDriplines" placeholder="Enter number of driplines">
-
+    <input type="number" id="numDriplines" placeholder="Enter number of driplines" step="any">
+    
     <label for="weightPer1000">Weight per 1000 Feet (in lbs):</label>
-    <input type="number" id="weightPer1000" placeholder="Enter weight per 1000 feet">
-
+    <input type="number" id="weightPer1000" placeholder="Enter weight per 1000 feet" step="any">
+    
     <label for="totalAcres">Total Acres:</label>
-    <input type="number" id="totalAcres" placeholder="Enter total acres">
-
+    <input type="number" id="totalAcres" placeholder="Enter total acres" step="any">
+    
     <button onclick="calculateRecyclingWeight()">Calculate Recycling Weight</button>
-
-    <div class="result" id="result"></div>
+    
+    <div class="result" id="resultPlaceholder">
+        Result will appear here
+    </div>
 </div>
 
 <script>
 function calculateRecyclingWeight() {
-    // Get input values
-    const rowSpacing = parseFloat(document.getElementById('rowSpacing').value);
-    const numDriplines = parseFloat(document.getElementById('numDriplines').value);
-    const weightPer1000 = parseFloat(document.getElementById('weightPer1000').value);
-    const totalAcres = parseFloat(document.getElementById('totalAcres').value);
-
-    // Validate inputs
+    var rowSpacing = parseFloat(document.getElementById('rowSpacing').value);
+    var numDriplines = parseFloat(document.getElementById('numDriplines').value);
+    var weightPer1000 = parseFloat(document.getElementById('weightPer1000').value);
+    var totalAcres = parseFloat(document.getElementById('totalAcres').value);
+    
     if (isNaN(rowSpacing) || isNaN(numDriplines) || isNaN(weightPer1000) || isNaN(totalAcres)) {
-        document.getElementById('result').textContent = "Please enter valid numbers for all fields.";
+        document.getElementById('resultPlaceholder').innerHTML = "Please enter valid numbers for all fields.";
         return;
     }
-
-    // Convert acres to square feet (1 acre = 43,560 square feet)
-    const totalSquareFeet = totalAcres * 43560;
-
-    // Calculate total feet of driplines based on row spacing and number of driplines per row
-    const totalFeetOfDriplines = totalSquareFeet / rowSpacing * numDriplines;
-
-    // Calculate recycling weight based on input values
-    const recyclingWeight = (totalFeetOfDriplines * weightPer1000) / 1000;
-
-    // Display result
-    document.getElementById('result').textContent = "Total Recycling Weight: " + recyclingWeight.toFixed(2) + " lbs.";
+    
+    var totalSquareFeet = totalAcres * 43560;
+    var totalFeetOfDriplines = totalSquareFeet / rowSpacing * numDriplines;
+    var recyclingWeight = (totalFeetOfDriplines * weightPer1000) / 1000;
+    
+    document.getElementById('resultPlaceholder').innerHTML = "Total Recycling Weight: " + recyclingWeight.toFixed(2) + " lbs.";
 }
 </script>
-
 </body>
 </html>
