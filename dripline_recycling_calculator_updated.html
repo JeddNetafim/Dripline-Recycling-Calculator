@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dripline Recycling Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .calculator {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: auto;
+        }
+        .calculator label, .calculator input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .calculator input {
+            padding: 8px;
+            width: 100%;
+        }
+        .calculator button {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Dripline Recycling Calculator</h2>
+<div class="calculator">
+    <label for="rowSpacing">Row Spacing / Bed Spacing (in feet):</label>
+    <input type="number" id="rowSpacing" placeholder="Enter row spacing">
+
+    <label for="numDriplines">Number of Driplines per Row:</label>
+    <input type="number" id="numDriplines" placeholder="Enter number of driplines">
+
+    <label for="weightPer1000">Weight per 1000 Feet (in lbs):</label>
+    <input type="number" id="weightPer1000" placeholder="Enter weight per 1000 feet">
+
+    <label for="totalAcres">Total Acres:</label>
+    <input type="number" id="totalAcres" placeholder="Enter total acres">
+
+    <button onclick="calculateRecyclingWeight()">Calculate Recycling Weight</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculateRecyclingWeight() {
+    // Get input values
+    const rowSpacing = parseFloat(document.getElementById('rowSpacing').value);
+    const numDriplines = parseFloat(document.getElementById('numDriplines').value);
+    const weightPer1000 = parseFloat(document.getElementById('weightPer1000').value);
+    const totalAcres = parseFloat(document.getElementById('totalAcres').value);
+
+    // Validate inputs
+    if (isNaN(rowSpacing) || isNaN(numDriplines) || isNaN(weightPer1000) || isNaN(totalAcres)) {
+        document.getElementById('result').textContent = "Please enter valid numbers for all fields.";
+        return;
+    }
+
+    // Convert acres to square feet (1 acre = 43,560 square feet)
+    const totalSquareFeet = totalAcres * 43560;
+
+    // Calculate total feet of driplines based on row spacing and number of driplines per row
+    const totalFeetOfDriplines = totalSquareFeet / rowSpacing * numDriplines;
+
+    // Calculate recycling weight based on input values
+    const recyclingWeight = (totalFeetOfDriplines * weightPer1000) / 1000;
+
+    // Display result
+    document.getElementById('result').textContent = "Total Recycling Weight: " + recyclingWeight.toFixed(2) + " lbs.";
+}
+</script>
+
+</body>
+</html>
