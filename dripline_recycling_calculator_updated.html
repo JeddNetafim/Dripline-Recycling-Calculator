@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +70,29 @@
             color: #2c3e50;
             text-align: center;
         }
+        .reference-chart {
+            margin-top: 30px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .reference-chart h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .reference-chart table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reference-chart th, .reference-chart td {
+            border: 1px solid #bdc3c7;
+            padding: 8px;
+            text-align: left;
+        }
+        .reference-chart th {
+            background-color: #3498db;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -95,8 +117,27 @@
     
     <button onclick="calculateRecyclingWeight()">Calculate Recycling Weight</button>
     
+    <div class="reference-chart">
+        <h3>Weight Per 1000' Reference Chart</h3>
+        <table>
+            <tr><th>Type</th><th>Weight (lbs)</th></tr>
+            <tr><td>Regen</td><td>6.00</td></tr>
+            <tr><td>5Mil 5/8"</td><td>4.46</td></tr>
+            <tr><td>6Mil 5/8"</td><td>6.00</td></tr>
+            <tr><td>8Mil 5/8"</td><td>7.00</td></tr>
+            <tr><td>10mil 5/8"</td><td>8.66</td></tr>
+            <tr><td>13mil 5/8"</td><td>11.00</td></tr>
+            <tr><td>15mil 5/8"</td><td>13.50</td></tr>
+            <tr><td>6Mil 7/8"</td><td>7.50</td></tr>
+            <tr><td>8mil 7/8"</td><td>9.33</td></tr>
+            <tr><td>10mil 7/8"</td><td>11.80</td></tr>
+            <tr><td>13mil 7/8"</td><td>16.66</td></tr>
+            <tr><td>15Mil 7/8"</td><td>18.48</td></tr>
+        </table>
+    </div>
+    
     <div class="result" id="resultPlaceholder">
-        Result will appear here
+        Result
     </div>
 </div>
 
